@@ -19,6 +19,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalDateComponent } from './components/modal-date/modal-date.component';
 import { QuestionModule } from './shared/components/question/question.module';
 import { ModalNewDateComponent } from './components/modal-new-date/modal-new-date.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ModalNewDateComponent } from './components/modal-new-date/modal-new-dat
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     QuestionModule,
+    BsDatepickerModule.forRoot(),
   ],
   entryComponents: [
     ModalDateComponent,
