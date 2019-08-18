@@ -1,7 +1,7 @@
 export interface DeathDate {
   id?: string;
-  startDate?: Date;
-  endDate?: Date;
+  start?: Date;
+  end?: Date;
   title?: string;
   contactEmail?: string;
 }

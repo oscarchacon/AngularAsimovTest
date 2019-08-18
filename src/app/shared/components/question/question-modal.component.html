@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Cerrar"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body text-center" style="padding: 1rem;">
+  <p>
+    {{ message }} <label><b>{{ question }}</b></label>
+  </p>
+  <p *ngIf="enterText">
+    <textarea
+      ref-textarea
+      [(ngModel)]="inputText"
+      rows="6"
+      cols="35"
+      placeholder="{{placeholder}}"
+    ></textarea>
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="decline()"><i class="fas fa-times"></i> No</button>
+  <button type="button" class="btn btn-primary" (click)="confirm()"><i class="fas fa-check"></i> Yes</button>
+</div>

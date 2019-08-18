@@ -11,7 +11,7 @@ export class DeathDateService {
   private endPoint: string;
 
   constructor(private base: BaseService) {
-    this.endPoint = 'api/DeathDate';
+    this.endPoint = 'DeathDate';
   }
 
   getAllDates(year?: number, month?: number): Observable<any> {
@@ -33,5 +33,12 @@ export class DeathDateService {
 
   updateDate(deathDate: DeathDate): Observable<any> {
     return this.base.put(`${this.endPoint}/${deathDate.id}`, deathDate);
+  }
+
+  deleteDate(deathDate: DeathDate | string): Observable<any> {
+    if (typeof deathDate === 'string') {
+      return this.base.delete(`${this.endPoint}/${deathDate}`);
+    }
+    return this.base.delete(`${this.endPoint}/${deathDate.id}`);
   }
 }

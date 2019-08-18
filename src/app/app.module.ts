@@ -12,12 +12,21 @@ import { HomeComponent } from './components/home/home.component';
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 import { FullCalendarModule } from 'primeng/fullcalendar';     //accordion and accordion tab
 import { ButtonModule } from 'primeng/button';
-
+import { CalendarHeaderComponentComponent } from './components/calendar-header-component/calendar-header-component.component';
+import { UtilsModule } from './utils/utils.module';
+import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalDateComponent } from './components/modal-date/modal-date.component';
+import { QuestionModule } from './shared/components/question/question.module';
+import { ModalNewDateComponent } from './components/modal-new-date/modal-new-date.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CalendarHeaderComponentComponent,
+    ModalDateComponent,
+    ModalNewDateComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +41,14 @@ import { ButtonModule } from 'primeng/button';
     FullCalendarModule,
     AccordionModule,
     ButtonModule,
+    UtilsModule,
+    ToastrModule.forRoot(),
+    ModalModule.forRoot(),
+    QuestionModule,
+  ],
+  entryComponents: [
+    ModalDateComponent,
+    ModalNewDateComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

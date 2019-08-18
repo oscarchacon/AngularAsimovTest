@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    Event Details
+  </h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Title</label>
+        <span class="form-control">{{eventDate.title}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Contact Email</label>
+        <span class="form-control">{{eventDate.contactEmail}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Start</label>
+        <span class="form-control">{{eventDate.start | date:'dd/MM/yyyy hh:mm'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>End</label>
+        <span class="form-control">{{eventDate.end | date:'dd/MM/yyyy hh:mm'}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <!--<button class="btn btn-primary" (click)="closeModal()"><i class="fas fa-times"></i> Edit</button>-->
+  <button class="btn btn-danger" (click)="deleteEventDate(eventDate)" [disabled]="loadingRequest"><i class="fas fa-trash"></i> Delete</button>
+  <button class="btn btn-light" (click)="closeModal()" [disabled]="loadingRequest"><i class="fas fa-times"></i> Close</button>
+</div>

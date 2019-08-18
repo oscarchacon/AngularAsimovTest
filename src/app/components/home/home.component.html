@@ -1,6 +1,50 @@
 <div class="row">
   <div class="col-sm-12">
-    <p>home works!</p>
-    <p-fullCalendar #fc [events]="events" [options]="options"></p-fullCalendar>
+    <calendar-header-component
+      [(view)]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="fetchEvents($event)"
+      (viewChange)="fetchEvents($event)"
+    >
+    </calendar-header-component>
+
+    <ng-container *ngIf="loadingEvents; else ISLOADEVENTS">
+      <div class="text-center">
+        <i class="fas fa-spinner fa-spin fa-5x"></i> <br />
+        Loading events...
+      </div>
+    </ng-container>
+
+    <ng-template #ISLOADEVENTS>
+      <button class="btn btn-info float" (click)="openModalNewEvent()"><i class="fas fa-plus"></i></button>
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view
+          *ngSwitchCase="'month'"
+          [viewDate]="viewDate"
+          [events]="events"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)"
+          (eventClicked)="eventClicked($event.event)"
+          [weekStartsOn]="startOfWeek"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="'week'"
+          [viewDate]="viewDate"
+          [events]="events"
+          (eventClicked)="eventClicked($event.event)"
+          [weekStartsOn]="startOfWeek"
+        >
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+          *ngSwitchCase="'day'"
+          [viewDate]="viewDate"
+          [events]="events"
+          (eventClicked)="eventClicked($event.event)"
+        >
+        </mwl-calendar-day-view>
+      </div>
+    </ng-template>
   </div>
+
 </div>
