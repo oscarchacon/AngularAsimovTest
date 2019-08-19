@@ -105,7 +105,6 @@ export class ModalNewDateComponent implements OnInit, OnDestroy {
       let difference = Math.abs(deathDate.end.getTime() - deathDate.start.getTime());
       let resultsInMinutes = Math.round(difference/60000);
 
-      console.log(resultsInMinutes);
       if (resultsInMinutes > 60) {
         this.toastrService.error(`The event must not be longer than 60 minutes`, `Error`, {
           closeButton: true,
