@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title pull-left">
-      Event Details
+      Add New Event
     </h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
@@ -11,7 +11,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>Title</label>
-          <span class="form-control">{{eventDate.title}}</span>
+          <input type="text" class="form-control" [(ngModel)]="eventDate.title"/>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>Contact Email</label>
-          <span class="form-control">{{eventDate.contactEmail}}</span>
+          <input type="text" class="form-control" [(ngModel)]="eventDate.contactEmail"/>
         </div>
       </div>
     </div>
@@ -27,7 +27,16 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>Start</label>
-          <span class="form-control">{{eventDate.start | date:'dd/MM/yyyy hh:mm'}}</span>
+          <input type="text" readonly value="{{eventDate.start | date: 'dd/MM/yyyy H:mm'}}" class="form-control"/>
+          <dl-date-time-picker
+            startView="day"
+            maxView="year"
+            minView="minute"
+            minuteStep="5"
+            [(ngModel)]="eventDate.start"
+            (change)="checkDate(eventDate)"
+          >
+          </dl-date-time-picker>
         </div>
       </div>
     </div>
@@ -35,14 +44,23 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>End</label>
-          <span class="form-control">{{eventDate.end | date:'dd/MM/yyyy hh:mm'}}</span>
+          <input type="text" readonly value="{{eventDate.end | date: 'dd/MM/yyyy H:mm'}}" class="form-control"/>
+          <dl-date-time-picker
+            startView="day"
+            maxView="year"
+            minView="minute"
+            minuteStep="5"
+            [(ngModel)]="eventDate.end"
+            (change)="checkDate(eventDate)"
+          >
+          </dl-date-time-picker>
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <!--<button class="btn btn-primary" (click)="closeModal()"><i class="fas fa-times"></i> Edit</button>-->
-    <button class="btn btn-danger" (click)="deleteEventDate(eventDate)" [disabled]="loadingRequest"><i class="fas fa-trash"></i> Delete</button>
+    <button class="btn btn-danger" (click)="saveDeathDate(eventDate)" [disabled]="loadingRequest"><i class="fas fa-save"></i> Save</button>
     <button class="btn btn-light" (click)="closeModal()" [disabled]="loadingRequest"><i class="fas fa-times"></i> Close</button>
   </div>
 

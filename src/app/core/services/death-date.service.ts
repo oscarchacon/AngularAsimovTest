@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 import { DeathDate } from './death-date';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,19 @@ export class DeathDateService {
   }
 
   saveNewDate(deathDate: DeathDate): Observable<any> {
+    const yearstart = deathDate.start.getFullYear();
+    const monthstart = deathDate.start.getMonth();
+    const daystart = deathDate.start.getDate();
+    const hoursstart = deathDate.start.getHours();
+    const minutesstart = deathDate.start.getMinutes();
+    const yearend = deathDate.end.getFullYear();
+    const monthend = deathDate.end.getMonth();
+    const dayend = deathDate.end.getDate();
+    const hoursend = deathDate.end.getHours();
+    const minutesend = deathDate.end.getMinutes();
+
+    deathDate.start = new Date(Date.UTC(yearstart, monthstart, daystart, hoursstart, minutesstart));
+    deathDate.end = new Date(Date.UTC(yearend, monthend, dayend, hoursend, minutesend));
     return this.base.post(this.endPoint, deathDate);
   }
 

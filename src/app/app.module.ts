@@ -20,6 +20,7 @@ import { ModalDateComponent } from './components/modal-date/modal-date.component
 import { QuestionModule } from './shared/components/question/question.module';
 import { ModalNewDateComponent } from './components/modal-new-date/modal-new-date.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

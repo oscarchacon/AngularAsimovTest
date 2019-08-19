@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDateComponent } from '../modal-date/modal-date.component';
+import { ModalNewDateComponent } from '../modal-new-date/modal-new-date.component';
 
 @Component({
   selector: 'app-home',
@@ -118,6 +119,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openModalNewEvent(): void {
+    const conf = {
+      initialState: {
+        eventDate: {} as any,
+        events: this.events
+      },
+      class: 'modal-md'
+    };
 
+    this.bsModalRef = this.modalService.show(ModalNewDateComponent, conf);
+    this.responseModalFunction = this.bsModalRef.content.onclose.subscribe((response: any) => {
+      if (response) {
+        this.getDeathDates(this.yearNow, this.monthNow);
+      }
+    });
   }
 }
